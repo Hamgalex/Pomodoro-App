@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/task']"></ion-back-button>
+    </ion-buttons>
+    <ion-title id="text-nav" class="font">Task</ion-title>
+  </ion-toolbar>   
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <br>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="greenpomodoro">
+            <ion-label><br><br>work time <br> {{workTime}} min<br><br></ion-label>
+            <br>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="greenpomodoro">
+            <ion-label><br><br>break time <br> {{breakTime}} min<br><br></ion-label>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <div class="greenpomodoro">
+            <ion-label><br><br> long break time <br> {{longBreakTime}} min<br><br></ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+
+    <ion-item>
+      <ion-label>Work Time</ion-label>
+      <ion-range min=".1" max="50" step="5"  color="secondary" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Break Time</ion-label>
+      <ion-range min=".1" max="20" step="1" color="secondary" pin="true" value="5"  [(ngModel)]='breakTime'></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Long Break Time</ion-label>
+      <ion-range min=".2" max="20" step="1" color="secondary" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Number of Cycles</ion-label>
+      <ion-range min="1" max="10" step="1" color="secondary" pin="true" value="4" [(ngModel)]='cycles' ></ion-range>
+    </ion-item>
+
+    
+
+    <br><br>
+      <ion-button expand="full" class="font" style="font-size: 30px;" (click)="sendData()">start</ion-button>
+  </div>
+</ion-content>
+

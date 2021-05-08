@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [routerLink]="['/task']"></ion-back-button>
+    </ion-buttons>
+    <ion-title id="text-nav" style="font-family: 'Happy Monkey', cursive">Counter</ion-title>
+  </ion-toolbar>   
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="container" *ngIf="taskNumber%2 == 0">
+    <div class="count">
+      <label class="big font">Cycle {{taskNumber/2+1}} / {{cycles}}</label>
+      <br><br><br>
+      <div class="num"> 
+        <countdown #cd [config]="configWork" (event)="handleEvent($event)"></countdown>
+      </div>
+      <br><br>
+      <div class="pomodoro1"></div>
+      <br><br>
+      <label class="med font"><span style="color:black; font-size: 23px;">Next</span><br>Break {{taskNumber/2+1}}</label>
+    </div>
+  </div>
+
+  <div class="containerb" *ngIf="taskNumber%2 == 1 && taskNumber%8!=7">
+    <div class="count">
+      <label class="big fontb">Enjoy your Break</label>
+      <br><br><br>
+      <div class="numb"> 
+        <countdown #cd [config]="configBreak" (event)="handleEvent($event)"></countdown>
+      </div>
+      <br><br>
+      <div class="pomodoro1"></div>
+      <br><br>
+      <label class="med fontb"><span style="color:black; font-size: 23px;">Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
+    </div>
+  </div>
+
+
+  <div class="containerb" *ngIf="taskNumber%8==7">
+    <div class="count">
+      <label class="big fontb">Enjoy your Long Break</label>
+      <br><br><br>
+      <div class="numb"> 
+        <countdown #cd [config]="configLongBreak" (event)="handleEvent($event)"></countdown>
+      </div>
+      <br><br>
+      <div class="pomodoro1"></div>
+      <br><br>
+      <label class="med fontb"><span style="color:black; font-size: 23px;">Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
+    </div>
+  </div>
+
+</ion-content>
