@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,4 @@ import { MenuController } from '@ionic/angular';
 })
 export class AppComponent {
   constructor() {}
-
-  ionViewWillEnter(){
-    console.log('prueba');
-
-  }
 }

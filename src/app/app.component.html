@@ -1,6 +1,6 @@
 <ion-app>
-  <!-- <ion-menu side="start" menuId="menu1"> -->
-    <!-- <ion-header>
+  <ion-menu side="start" contentId="main-content" type="overlay">
+    <ion-header>
       <ion-toolbar color="primary">
         <ion-title> Mi App </ion-title>
       </ion-toolbar>
@@ -19,8 +19,7 @@
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
-    </ion-content> -->
-    prueba
-  <!-- </ion-menu> -->
-  <ion-router-outlet main></ion-router-outlet>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>
