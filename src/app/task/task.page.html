@@ -10,31 +10,38 @@
   <div id="container">
     <br>
     <ion-grid>
-      <ion-row>
+      <ion-row class="pomodorotext">
+
         <ion-col>
-          <div class="greenpomodoro">
-            <ion-label><br><br>work time <br> {{workTime}} min<br><br></ion-label>
-            <br>
+          <div class="redpomodoro">
+            <ion-label><br><br> {{workTime}} min<br><br></ion-label>
           </div>
-        </ion-col>
-        <ion-col>
-          <div class="greenpomodoro">
-            <ion-label><br><br>break time <br> {{breakTime}} min<br><br></ion-label>
-          </div>
+          <ion-label>work</ion-label>
         </ion-col>
 
         <ion-col>
-          <div class="greenpomodoro">
-            <ion-label><br><br> long break time <br> {{longBreakTime}} min<br><br></ion-label>
+          <div class="orangepomodoro">
+            <ion-label><br><br>  {{breakTime}} min<br><br></ion-label>
           </div>
+            <ion-label>break</ion-label>
         </ion-col>
+
+        <ion-col>
+          <div class="yellowpomodoro">
+            <ion-label><br><br> {{longBreakTime}} min<br><br></ion-label>
+          </div>
+            <ion-label>long break</ion-label>
+        </ion-col>
+
       </ion-row>
     </ion-grid>
-
+    
+    <br>
+    <br>
 
     <ion-item>
       <ion-label>Work Time</ion-label>
-      <ion-range min=".1" max="50" step="5"  color="secondary" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
+      <ion-range min=".1" max="50" step="5"  color="danger" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
     </ion-item>
 
     <ion-item>
@@ -44,7 +51,7 @@
 
     <ion-item>
       <ion-label>Long Break Time</ion-label>
-      <ion-range min=".2" max="20" step="1" color="secondary" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
+      <ion-range min=".2" max="20" step="1" color="warning" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
     </ion-item>
 
     <ion-item>

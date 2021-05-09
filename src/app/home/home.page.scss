@@ -1,6 +1,6 @@
 #container {
-  text-align: center;
-
+  text-align: left;
+ 
   position: absolute;
   left: 0;
   right: 0;
@@ -9,7 +9,7 @@
 }
 
 #container strong {
-  font-size: 20px;
+  font-size: 30px;
   line-height: 26px;
 }
 
@@ -17,11 +17,31 @@
   font-size: 16px;
   line-height: 22px;
 
-  color: #8c8c8c;
+  color: #2a2a2a;
 
   margin: 0;
 }
 
 #container a {
   text-decoration: none;
+}
+
+#item{
+  font-family:'Courier New', Courier, monospace;
+  font-size:100px;
+  
+  
+}
+
+ion-card{
+  color:black;
+  font-weight:bold;
+}
+#image{
+  height:100px; 
+  width:100px;
+}
+p{
+  font-size:40px;
+  font-weight:bold;
 }

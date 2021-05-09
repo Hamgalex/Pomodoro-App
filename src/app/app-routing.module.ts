@@ -10,18 +10,18 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canLoad: [LoginGuard]
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    //,canLoad: [LoginGuard]
   },
   {
     path: 'task',
-    loadChildren: () => import('./task/task.module').then( m => m.TaskPageModule),
-    canLoad: [LoginGuard]
+    loadChildren: () => import('./task/task.module').then( m => m.TaskPageModule)
+    //,canLoad: [LoginGuard]
   },
   {
     path: 'counter',
-    loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule),
-    canLoad: [LoginGuard]
+    loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)
+    //,canLoad: [LoginGuard]
   },
   { path: 'counter/:id',
     resolve: {

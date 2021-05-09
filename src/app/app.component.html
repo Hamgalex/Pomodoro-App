@@ -9,8 +9,12 @@
       <ion-list>
         <ion-menu-toggle>
           <ion-item [routerLink]="['/task']">
-            <ion-icon name="search" slot="start"></ion-icon>
-            <ion-label>Cronometro</ion-label>
+            <ion-icon name="alarm-outline" slot="start"></ion-icon>
+            <ion-label>Timer</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/home']">
+            <ion-icon name="help-outline" slot="start"></ion-icon>
+            <ion-label>What is Pomodoro?</ion-label>
           </ion-item>
 
           <ion-item (click)="onLogout()">
