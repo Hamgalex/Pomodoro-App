@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'task',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -19,10 +19,14 @@ const routes: Routes = [
     path: 'counter',
     loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)
   },
-  { path: 'counter/:id', 
+  { path: 'counter/:id',
     resolve: {
       special: DataResolverService
-    },loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)}
+    },loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)},
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  }
 ];
 
 @NgModule({
