@@ -1,23 +1,27 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from './login/login.guard';
 import { DataResolverService } from './services/data-resolver.service';
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'task',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canLoad: [LoginGuard]
+  },
+  {
     path: 'task',
-    loadChildren: () => import('./task/task.module').then( m => m.TaskPageModule)
+    loadChildren: () => import('./task/task.module').then( m => m.TaskPageModule),
+    canLoad: [LoginGuard]
   },
   {
     path: 'counter',
-    loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)
+    loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule),
+    canLoad: [LoginGuard]
   },
   { path: 'counter/:id',
     resolve: {
@@ -26,7 +30,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
-  }
+  },  
 ];
 
 @NgModule({
