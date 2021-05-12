@@ -47,6 +47,8 @@ export class CounterPage implements OnInit {
     this.cycles = this.data[0].cycles;
     this.longBreakTime=this.data[0].longBreakTime;
 
+  
+
     this.configWork = {
       leftTime: (this.workTime*60),
       format: 'm:s',
@@ -64,7 +66,9 @@ export class CounterPage implements OnInit {
   }
 
   handleEvent(e: CountdownEvent){
-    this.notify = `${e.status}`; // la neta no se que hace esto
+    this.notify = `${e.status}`;
+    console.log(this.workTime);
+    console.log(e.action); // la neta no se que hace esto
     if (this.notify == '3'){
       this.taskNumber++;
       if (this.taskNumber==(2*this.cycles)-1){   // si llega al ultimo 

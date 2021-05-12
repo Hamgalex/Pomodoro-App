@@ -11,32 +11,45 @@
 
   <div class="container" *ngIf="taskNumber%2 == 0">
     <div class="count">
-      <label >Cycle {{taskNumber/2+1}} / {{cycles}}</label>
-      <br><br><br>
+
+      
+      <label >Cycle {{taskNumber/2+1}} / {{cycles}}</label><br>
+      <label >Time to Work!</label>
+
       <div class="num"> 
-        <br><br><br>
-        <countdown #cd [config]="configWork" (event)="handleEvent($event)"></countdown>
-        <br><br><br>
+        <round-progress
+        [current]="360"
+        [max]="360"
+        [duration]='workTime*60*1000'
+        [animation]="'easeOutSine'"
+        [color]="'#860a0a'"
+        ></round-progress>
       </div>
-      <br><br>
+      <countdown #cd [config]="configWork" (event)="handleEvent($event)"></countdown>
       <div class="pomodoro1"></div>
-      <br><br>
+     
       <label class="med font"><span style="color:black; font-size: 23px;">Next</span><br>Break {{taskNumber/2+1}}</label>
     </div>
   </div>
 
   <div class="containerb" *ngIf="taskNumber%2 == 1 && taskNumber%8!=7">
     <div class="count">
-      <label>Enjoy your Break</label>
-      <br><br><br>
+      <label>Enjoy your Break</label><br>
+      
       <div class="numb"> 
-        <br><br><br>
+        <round-progress
+        [current]="360"
+        [max]="360"
+        [duration]='breakTime*60*1000'
+        [animation]="'easeOutSine'"
+        [color]="'#c54910'"
+        ></round-progress>
         <countdown  #cd [config]="configBreak" (event)="handleEvent($event)"></countdown>
-        <br><br><br>
+        
       </div>
-      <br><br>
+     
       <div class="pomodoro1"></div>
-      <br><br>
+      
       <label class="med fontb"><span style="color:black; font-size: 23px;">Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
     </div>
   </div>
@@ -44,16 +57,22 @@
 
   <div class="containerc" *ngIf="taskNumber%8==7">
     <div class="count">
-      <label >Enjoy your Long Break</label>
-      <br><br><br>
+      <label >Enjoy your Long Break</label><br>
+      
       <div class="numc"> 
-        <br><br><br>
+        <round-progress
+        [current]="360"
+        [max]="360"
+        [duration]='longBreakTime*60*1000'
+        [animation]="'easeOutSine'"
+        [color]="'#c0a403'"
+    ></round-progress>
         <countdown #cd [config]="configLongBreak" (event)="handleEvent($event)"></countdown>
-        <br><br><br>
+        
       </div>
-      <br><br>
+     
       <div class="pomodoro1"></div>
-      <br><br>
+      
       <label class="med fontb"><span style="color:black; font-size: 23px;">Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
     </div>
   </div>
