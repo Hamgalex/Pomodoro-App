@@ -1,28 +1,24 @@
 import { LoginService } from './login.service';
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuard implements CanLoad {
+export class LoginGuard implements CanActivate {
   constructor(
     private loginService: LoginService,
     private router: Router
   ) { }
-  canLoad(
-    route: Route,
-    segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      return this.loginService.usuarioLoggeado.pipe(
-        take(1),
-        tap(isAuth=>{
-          console.log(this.loginService.usuarioLoggeado);
-          if (!this.loginService.usuarioLoggeado) {
-            this.router.navigateByUrl('/login');
-          }
-        })
-      );
+  canActivate()
+  {
+   const logged = this.loginService.usuarioLoggeado;
+   logged.subscribe(res=>{
+    if(!res)
+      this.router.navigateByUrl('/login');
+   });
+   return true;
   }
 }
