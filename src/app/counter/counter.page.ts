@@ -39,6 +39,7 @@ export class CounterPage implements OnInit {
 
   ngOnInit() {
     if(this.route.snapshot.data['special']){
+      
       this.data = this.route.snapshot.data['special'];
     }
     console.log(this.data);
@@ -64,12 +65,17 @@ export class CounterPage implements OnInit {
       format: 'm:s',
     };
   }
-
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "./../../../assets/audio/toctoc.mp3";
+    audio.load();
+    audio.play();
+    return true;
+  }
   handleEvent(e: CountdownEvent){
     this.notify = `${e.status}`;
-    console.log(this.workTime);
-    console.log(e.action); // la neta no se que hace esto
     if (this.notify == '3'){
+      this.playAudio();
       this.taskNumber++;
       if (this.taskNumber==(2*this.cycles)-1){   // si llega al ultimo 
         this.taskNumber=0;
