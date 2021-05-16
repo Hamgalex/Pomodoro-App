@@ -4,6 +4,8 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import { ChartsModule } from 'ng2-charts';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,7 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,HttpClientModule , IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule,HttpClientModule , IonicModule.forRoot(), AppRoutingModule,ChartsModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent]
 })
