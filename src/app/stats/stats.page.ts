@@ -18,7 +18,7 @@ export class StatsPage implements OnInit  {
     }
   ]; */
 
-  data = {} as Registro[];
+  data: Registro[] = [];
 
   chartData = [
     {
@@ -26,7 +26,7 @@ export class StatsPage implements OnInit  {
       label: 'Minutos de Estudio'
     }
   ];
-  chartLabels = this.data.map(objeto => objeto.fecha);
+  chartLabels = this.data.map(objeto => objeto.fecha.toString());
   chartOptions = {
     responsive: true
   };

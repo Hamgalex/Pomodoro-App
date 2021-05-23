@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "pruebaPomodoro",
+  "appId": "equipo3.pomodoro",
+  "appName": "Reloj Pomodoro",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -10,5 +10,5 @@
     }
   },
   "cordova": {},
-  "linuxAndroidStudioPath": "/snap/bin/android-studio"
+  "linuxAndroidStudioPath": "/snap/android-studio/current/android-studio/bin/studio.sh"
 }
