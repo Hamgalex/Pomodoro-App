@@ -1,7 +1,7 @@
 import { Registro } from './../services/registro';
 import { DbService } from './../services/db.service';
-import { Component, OnInit } from '@angular/core';
-import { Label } from 'ng2-charts';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BaseChartDirective } from 'ng2-charts';
 const date = new Date();
 @Component({
   selector: 'app-stats',
@@ -10,6 +10,8 @@ const date = new Date();
 })
 
 export class StatsPage implements OnInit  {
+
+  @ViewChild(BaseChartDirective) private chart: BaseChartDirective;
 
   /* chartData = [
     {
@@ -22,14 +24,25 @@ export class StatsPage implements OnInit  {
 
   chartData = [
     {
-      data: this.data.map(objeto => objeto.numciclos),
+      data: [],
+      // data: [1, 3, 5, 3],
       label: 'Minutos de Estudio'
     }
   ];
-  chartLabels = this.data.map(objeto => objeto.fecha.toString());
+  chartLabels = [];
+  // chartLabels = ['blanco', 'rojo', 'negro', 'azul'];
   chartOptions = {
     responsive: true
+    /* scales: {
+      ticks: {
+        steps: 10,
+        stepValue: 10,
+        max: Math.max.apply(Math, this.data.map(objeto => objeto.numciclos)),
+        min: 0
+      }
+    } */
   };
+
   /*chartLabels = [
     date.getDate()+'/'+date.getMonth(),
     date.getDate()-1+'/'+date.getMonth(),
@@ -47,9 +60,22 @@ export class StatsPage implements OnInit  {
       if(res){
         this.db.fecthRegistros().subscribe(item => {
           this.data = item;
+          this.chartData[0].data = item.map(objeto => objeto.numciclos);
+          this.chartLabels = item.map(objeto => objeto.fecha.toString);
+          // console.log(this.data.map(objeto => objeto.fecha.toString()));
+          // console.log(this.data.map(objeto => objeto.numciclos));
         });
       }
     });
+    this.forceChartRefresh();
+  }
+
+  forceChartRefresh() {
+    setTimeout(() => {
+      // this.chart.refresh();
+      this.chart.ngOnChanges({});
+    }, 10);
+
   }
 
 }

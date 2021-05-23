@@ -57,7 +57,7 @@ export class DbService {
 
   // Get list
   async getRegistros(){
-    const res = await this.storage.executeSql('SELECT * FROM registros', []);
+    const res = await this.storage.executeSql('SELECT * FROM registro', []);
     const items: Registro[] = [];
     if (res.rows.length > 0) {
       for (let i = 0; i < res.rows.length; i++) {

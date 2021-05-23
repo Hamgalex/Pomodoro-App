@@ -30,15 +30,16 @@
     "angular-svg-round-progressbar": "^6.0.1",
     "chart.js": "^2.9.4",
     "cordova-sqlite-storage": "^6.0.0",
-    "ng2-charts": "^2.2.3",
+    "ng2-charts": "^2.4.2",
     "ngx-countdown": "^11.0.3",
+    "pseudomap": "^1.0.2",
     "rxjs": "~7.1.0",
     "tslib": "^2.2.0",
     "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.901.15",
+    "@angular-devkit/build-angular": "^12.0.1",
     "@angular-eslint/builder": "12.0.0",
     "@angular-eslint/eslint-plugin": "12.0.0",
     "@angular-eslint/eslint-plugin-template": "12.0.0",
