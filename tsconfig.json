@@ -18,7 +18,7 @@
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true,
-    "enableIvy": false
+    "strictTemplates": true
+    // "enableIvy": false
   }
 }
