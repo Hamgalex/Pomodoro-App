@@ -11,23 +11,23 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-    ,canActivate: [LoginGuard]
+    //,canActivate: [LoginGuard]
   },
   {
     path: 'task',
     loadChildren: () => import('./task/task.module').then( m => m.TaskPageModule)
-    ,canActivate: [LoginGuard]
+    //,canActivate: [LoginGuard]
   },
   {
     path: 'counter',
     loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)
-    ,canActivate: [LoginGuard]
+    //,canActivate: [LoginGuard]
   },
   { path: 'counter/:id',
     resolve: {
       special: DataResolverService
     },loadChildren: () => import('./counter/counter.module').then( m => m.CounterPageModule)
-  ,canActivate: [LoginGuard]
+  //,canActivate: [LoginGuard]
   },
   {
     path: 'login',

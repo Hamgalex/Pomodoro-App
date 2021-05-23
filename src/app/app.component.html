@@ -2,7 +2,7 @@
   <ion-menu side="start" contentId="main-content" type="overlay">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title> Pomodoro </ion-title>
+        <ion-title style="color: white;"> Pomodoro </ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
@@ -17,8 +17,8 @@
             <ion-label>What is Pomodoro?</ion-label>
           </ion-item>
           <ion-item [routerLink]="['/stats']">
-            <ion-icon name="help-outline" slot="start"></ion-icon>
-            <ion-label>What is Pomodoro?</ion-label>
+            <ion-icon name="stats-chart-outline" slot="start"></ion-icon>
+            <ion-label>Stats</ion-label>
           </ion-item>
 
           <ion-item (click)="onLogout()">

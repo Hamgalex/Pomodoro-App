@@ -20,18 +20,18 @@ export class CounterPage implements OnInit {
 
   configWork = {
     leftTime: 1500,
-    format: 'm:s',
+    format: 'mm:ss',
   };
 
   configBreak = {
     leftTime: 300,
-    format: 'm:s',
+    format: 'mm:ss',
   };
 
 
   configLongBreak={
     leftTime: 300,
-    format: 'm:s',
+    format: 'mm:ss',
   };
 
 
@@ -52,19 +52,20 @@ export class CounterPage implements OnInit {
 
     this.configWork = {
       leftTime: (this.workTime*60),
-      format: 'm:s',
+      format: 'mm:ss',
     };
 
     this.configBreak = {
       leftTime: (this.breakTime*60),
-      format: 'm:s',
+      format: 'mm:ss',
     };
 
     this.configLongBreak={
       leftTime: (this.longBreakTime*60),
-      format: 'm:s',
+      format: 'mm:ss',
     };
   }
+
   playAudio(){
     let audio = new Audio();
     audio.src = "./../../../assets/audio/toctoc.mp3";
@@ -72,6 +73,7 @@ export class CounterPage implements OnInit {
     audio.play();
     return true;
   }
+
   handleEvent(e: CountdownEvent){
     this.notify = `${e.status}`;
     if (this.notify == '3'){
