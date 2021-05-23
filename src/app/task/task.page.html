@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar  color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button style="color: white;"></ion-menu-button>
     </ion-buttons>
    </ion-toolbar>
 </ion-header>
@@ -9,60 +9,53 @@
 <ion-content [fullscreen]="true">
   <div id="container">
     <br>
-    <ion-grid>
-      <ion-row class="pomodorotext">
+    <ion-list>
 
-        <ion-col>
-          <div class="redpomodoro">
-            <ion-label><br><br> {{workTime}} min<br><br></ion-label>
-          </div>
-          <ion-label>work</ion-label>
-        </ion-col>
+      <ion-item>
+        <ion-avatar>
+          <img src="/assets/img/pomodoro.png"/>
+        </ion-avatar>
+            <div >
+              <ion-label>Work Time: {{workTime}} min</ion-label>
+            </div>
+          <ion-range min=".2" max="50" step="5"  color="danger" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
+      </ion-item>
 
-        <ion-col>
-          <div class="orangepomodoro">
-            <ion-label><br><br>  {{breakTime}} min<br><br></ion-label>
-          </div>
-            <ion-label>break</ion-label>
-        </ion-col>
+      <ion-item>
+        <ion-avatar>
+          <img src="/assets/img/yellowpomodoro.png"/>
+        </ion-avatar>
+        <div>
+         <ion-label>Break Time: {{breakTime}} min</ion-label>
+        </div>
+        <ion-range min=".2" max="20" step="1" color="secondary" pin="true" value="5"  [(ngModel)]='breakTime'></ion-range>
+      </ion-item>
 
-        <ion-col>
-          <div class="yellowpomodoro">
-            <ion-label><br><br> {{longBreakTime}} min<br><br></ion-label>
-          </div>
-            <ion-label>long break</ion-label>
-        </ion-col>
+      <ion-item>
+        <ion-avatar>
+          <img src="/assets/img/orange pomodoro.png"/>
+        </ion-avatar>
+        <div >
+          <ion-label>Long Break Time: {{longBreakTime}} min</ion-label>
+        </div>
+        <ion-range min=".2" max="20" step="1" color="tertiary" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
+      </ion-item>
 
-      </ion-row>
-    </ion-grid>
-    
+
+      <ion-item>
+        <ion-avatar>
+          <img src="/assets/img/greenpomodoro.png"/>
+        </ion-avatar>
+        <div>
+          <ion-label>Number of cycles: {{cycles}} times</ion-label>
+        </div>
+        <ion-range min="1" max="10" step="1" color="success" pin="true" value="4" [(ngModel)]='cycles' ></ion-range>
+      </ion-item>
+
+    </ion-list>
     <br>
     <br>
-
-    <ion-item>
-      <ion-label>Work Time</ion-label>
-      <ion-range min=".1" max="50" step="5"  color="danger" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Break Time</ion-label>
-      <ion-range min=".1" max="20" step="1" color="secondary" pin="true" value="5"  [(ngModel)]='breakTime'></ion-range>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Long Break Time</ion-label>
-      <ion-range min=".2" max="20" step="1" color="warning" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
-    </ion-item>
-
-    <ion-item>
-      <ion-label>Number of Cycles</ion-label>
-      <ion-range min="1" max="10" step="1" color="secondary" pin="true" value="4" [(ngModel)]='cycles' ></ion-range>
-    </ion-item>
-
-
-
-    <br><br>
-      <ion-button expand="full" class="font" style="font-size: 30px;" (click)="sendData()">start</ion-button>
+      <ion-button expand="full" style="font-size: 30px; color:white;" (click)="sendData()">start</ion-button>
   </div>
 </ion-content>
 
