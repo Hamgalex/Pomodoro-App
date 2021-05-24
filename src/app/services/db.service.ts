@@ -57,7 +57,7 @@ export class DbService {
 
   // Get list
   async getRegistros(){
-    const res = await this.storage.executeSql('SELECT * FROM registro', []);
+    const res = await this.storage.executeSql('SELECT * FROM registro ORDER BY fecha ASC LIMIT 5', []);
     const items: Registro[] = [];
     if (res.rows.length > 0) {
       for (let i = 0; i < res.rows.length; i++) {
@@ -73,9 +73,11 @@ export class DbService {
   }
 
   // Add
-  async addSong(numciclos: string, minsporciclo: string) {
-    const query='INSERT INTO registros (fecha, numciclos,minsporciclo) VALUES (date(\'now\'),'+numciclos+','+minsporciclo+')';
-    const res = await this.storage.executeSql(query);
-    this.getRegistros();
+  async addRegistro(numciclos: number, minsporciclo: number) {
+    const data = [numciclos, minsporciclo];
+    const query='INSERT INTO registro (fecha, numciclos,minsporciclo) VALUES (date(\'now\'), ?, ?)';
+    const res = await this.storage.executeSql(query, data);
+    await this.getRegistros();
+    return res;
   }
 }

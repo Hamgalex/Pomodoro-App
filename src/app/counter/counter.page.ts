@@ -1,3 +1,4 @@
+import { DbService } from './../services/db.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
@@ -15,8 +16,8 @@ export class CounterPage implements OnInit {
 
   workTime:  number;
   breakTime: number;
-  longBreakTime:number;
-  cycles:number;
+  longBreakTime: number;
+  cycles: number;
 
   configWork = {
     leftTime: 1500,
@@ -35,12 +36,11 @@ export class CounterPage implements OnInit {
   };
 
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private db: DbService) { }
 
   ngOnInit() {
-    if(this.route.snapshot.data['special']){
-      
-      this.data = this.route.snapshot.data['special'];
+    if(this.route.snapshot.data.special){
+      this.data = this.route.snapshot.data.special;
     }
     console.log(this.data);
     this.workTime  = this.data[0].work;
@@ -48,7 +48,6 @@ export class CounterPage implements OnInit {
     this.cycles = this.data[0].cycles;
     this.longBreakTime=this.data[0].longBreakTime;
 
-  
 
     this.configWork = {
       leftTime: (this.workTime*60),
@@ -67,8 +66,8 @@ export class CounterPage implements OnInit {
   }
 
   playAudio(){
-    let audio = new Audio();
-    audio.src = "./../../../assets/audio/toctoc.mp3";
+    const audio = new Audio();
+    audio.src = './../../../assets/audio/toctoc.mp3';
     audio.load();
     audio.play();
     return true;
@@ -76,16 +75,24 @@ export class CounterPage implements OnInit {
 
   handleEvent(e: CountdownEvent){
     this.notify = `${e.status}`;
-    if (this.notify == '3'){
+    if (this.notify === '3'){
       this.playAudio();
       this.taskNumber++;
-      if (this.taskNumber==(2*this.cycles)-1){   // si llega al ultimo 
+      if (this.taskNumber===(2*this.cycles)-1){   // si llega al ultimo
         this.taskNumber=0;
-        this.router.navigateByUrl('/task');
+        this.storeData();
       }
     }
   }
 
+  storeData() {
+    this.db.addRegistro(
+      this.cycles,
+      this.workTime
+    ).then(() => {
+      this.router.navigateByUrl('/task');
+    });
+  }
 
 }
 

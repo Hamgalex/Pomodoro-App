@@ -61,8 +61,8 @@ export class StatsPage implements OnInit  {
         this.db.fecthRegistros().subscribe(item => {
           this.data = item;
           this.chartData[0].data = item.map(objeto => objeto.numciclos);
-          this.chartLabels = item.map(objeto => objeto.fecha.toString);
-          // console.log(this.data.map(objeto => objeto.fecha.toString()));
+          this.chartLabels = item.map(objeto => objeto.fecha.toString());
+          console.log(item.map(objeto => objeto.fecha.toString()));
           // console.log(this.data.map(objeto => objeto.numciclos));
         });
       }
