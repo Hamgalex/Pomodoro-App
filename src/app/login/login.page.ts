@@ -12,8 +12,8 @@ import { Observable } from 'rxjs';
 })
 export class LoginPage implements OnInit {
 
-  isLoading: boolean = false;
-  isLoginMode: boolean = true;
+  isLoading = false;
+  isLoginMode = true;
 
   constructor(
     private loginService: LoginService,

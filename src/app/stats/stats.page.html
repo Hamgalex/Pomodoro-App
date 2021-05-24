@@ -8,14 +8,45 @@
 </ion-header>
 
 <ion-content>
+  <br/>
+  <ion-label>Cycles per sesion graph</ion-label>
   <div>
     <canvas baseChart
+    [colors]="chartColors"
     [chartType]="'line'"
     [legend]="true"
     [datasets]="chartData"
     [labels]="chartLabels"
     [options]="chartOptions"
-    
     ></canvas>
   </div>
+  <br/>
+  <br/>
+  <ion-label>Work time per cycle graph</ion-label>
+  <div>
+    <canvas baseChart
+    [colors]="chartColors2"
+    [chartType]="'line'"
+    [legend]="true"
+    [datasets]="chartData2"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    ></canvas>
+  </div>
+  <br/>
+  <br/>
+  <ion-label>Work time per session graph</ion-label>
+  <div>
+    <canvas baseChart
+    [colors]="chartColors3"
+    [chartType]="'line'"
+    [legend]="true"
+    [datasets]="chartData3"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    ></canvas>
+  </div>
+
+  <br/>
+  <br/>
 </ion-content>

@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
+  private data: any;
+
   constructor() { }
 
-  private data;
-
-  setData(data){
+  setData(data: any){
       this.data = data;
   }
 

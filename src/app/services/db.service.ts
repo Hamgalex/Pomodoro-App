@@ -28,7 +28,7 @@ export class DbService {
       })
       .then((db: SQLiteObject) => {
           this.storage = db;
-          this.getFakeData();
+          this.getData();
       });
     });
   }
@@ -36,28 +36,28 @@ export class DbService {
   dbState() {
     return this.isDbReady.asObservable();
   }
+
   fecthRegistros(): Observable<Registro[]> {
     return this.registroList.asObservable();
   }
 
-
-    getFakeData() {
-      this.httpClient.get(
-        'assets/dump.sql',
-        {responseType: 'text'}
-      ).subscribe(data => {
-        this.sqlPorter.importSqlToDb(this.storage, data)
-          .then(_ => {
-            this.getRegistros();
-            this.isDbReady.next(true);
-          })
-          .catch(error => console.error(error));
-      });
-    }
+  getData() {
+    this.httpClient.get(
+      'assets/dump.sql',
+      {responseType: 'text'}
+    ).subscribe(data => {
+      this.sqlPorter.importSqlToDb(this.storage, data)
+        .then(_ => {
+          this.getRegistros();
+          this.isDbReady.next(true);
+        })
+        .catch(error => console.error(error));
+    });
+  }
 
   // Get list
   async getRegistros(){
-    const res = await this.storage.executeSql('SELECT * FROM registro ORDER BY fecha ASC LIMIT 5', []);
+    const res = await this.storage.executeSql('SELECT * FROM registro ORDER BY id DESC LIMIT 7', []);
     const items: Registro[] = [];
     if (res.rows.length > 0) {
       for (let i = 0; i < res.rows.length; i++) {
@@ -75,7 +75,7 @@ export class DbService {
   // Add
   async addRegistro(numciclos: number, minsporciclo: number) {
     const data = [numciclos, minsporciclo];
-    const query='INSERT INTO registro (fecha, numciclos,minsporciclo) VALUES (date(\'now\'), ?, ?)';
+    const query = 'INSERT INTO registro (fecha, numciclos, minsporciclo) VALUES (DATETIME(\'now\', \'localtime\'), ?, ?)';
     const res = await this.storage.executeSql(query, data);
     await this.getRegistros();
     return res;

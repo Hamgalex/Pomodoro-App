@@ -1,6 +1,7 @@
+/* DROP TABLE IF EXISTS registro; */
 CREATE TABLE IF NOT EXISTS registro(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    fecha DATE,
+    fecha TEXT,
     numciclos INTEGER,
     minsporciclo INTEGER
 );

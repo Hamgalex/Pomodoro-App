@@ -26,7 +26,19 @@ export class StatsPage implements OnInit  {
     {
       data: [],
       // data: [1, 3, 5, 3],
-      label: 'Minutos de Estudio'
+      label: 'Cycles'
+    }
+  ];
+  chartData2 = [
+    {
+      data: [],
+      label: 'Minutes'
+    }
+  ];
+  chartData3 = [
+    {
+      data: [],
+      label: 'Minutes'
     }
   ];
   chartLabels = [];
@@ -42,6 +54,61 @@ export class StatsPage implements OnInit  {
       }
     } */
   };
+  /* public chartColors: any[] = [
+    {
+      backgroundColor:['#FF7360', '#6FC8CE', '#FAFFF2', '#FFFCC4', '#B9E8E0']
+    }]; */
+    public chartColors: Array<any> = [
+    { // first color
+      backgroundColor: 'rgba(225,10,24,0.2)',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    },
+    { // second color
+      backgroundColor: 'rgba(225,10,24,0.2)',
+      borderColor: 'rgba(225,10,24,0.2)',
+      pointBackgroundColor: 'rgba(225,10,24,0.2)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(225,10,24,0.2)'
+    }];
+    public chartColors2: Array<any> = [
+      { // first color
+        backgroundColor: 'rgba(255,100,24,0.2)',
+        borderColor: 'rgba(255,100,24,0.2)',
+        pointBackgroundColor: 'rgba(255,100,24,0.2)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,100,24,0.2)'
+      },
+      { // second color
+        backgroundColor: 'rgba(255,100,24,0.2)',
+        borderColor: 'rgba(255,100,24,0.2)',
+        pointBackgroundColor: 'rgba(255,100,24,0.2)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,100,24,0.2)'
+      }];
+      public chartColors3: Array<any> = [
+        { // first color
+          backgroundColor: 'rgba(255,200,24,0.2)',
+          borderColor: 'rgba(255,200,24,0.2)',
+          pointBackgroundColor: 'rgba(255,200,24,0.2)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(255,200,24,0.2)'
+        },
+        { // second color
+          backgroundColor: 'rgba(255,200,24,0.2)',
+          borderColor: 'rgba(255,200,24,0.2)',
+          pointBackgroundColor: 'rgba(255,200,24,0.2)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(255,200,24,0.2)'
+        }];
 
   /*chartLabels = [
     date.getDate()+'/'+date.getMonth(),
@@ -60,9 +127,11 @@ export class StatsPage implements OnInit  {
       if(res){
         this.db.fecthRegistros().subscribe(item => {
           this.data = item;
-          this.chartData[0].data = item.map(objeto => objeto.numciclos);
-          this.chartLabels = item.map(objeto => objeto.fecha.toString());
-          console.log(item.map(objeto => objeto.fecha.toString()));
+          this.chartData[0].data = item.map(objeto => objeto.numciclos).reverse();
+          this.chartData2[0].data = item.map(objeto => objeto.minsporciclo).reverse();
+          this.chartData3[0].data = item.map(objeto => objeto.numciclos * objeto.minsporciclo).reverse();
+          this.chartLabels = item.map(objeto => objeto.fecha.toString()).reverse();
+          // console.log(item.map(objeto => objeto.fecha.toString()));
           // console.log(this.data.map(objeto => objeto.numciclos));
         });
       }
