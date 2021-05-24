@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from './login/login.guard';
 import { DataResolverService } from './services/data-resolver.service';
 const routes: Routes = [
   {
@@ -36,8 +35,7 @@ const routes: Routes = [
   {
     path: 'stats',
     loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule)
-    
-  },   
+  },
 ];
 
 @NgModule({

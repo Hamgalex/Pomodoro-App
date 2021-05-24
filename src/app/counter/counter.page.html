@@ -4,7 +4,7 @@
       <ion-back-button [routerLink]="['/task']"></ion-back-button>
     </ion-buttons>
     <ion-title style="color: white;" >Counter</ion-title>
-  </ion-toolbar>   
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
@@ -20,7 +20,7 @@
       </ion-label>
       <br>
       <br>
-      <div class="num"> 
+      <div class="num">
         <round-progress
         [current]="360"
         [max]="360"
@@ -33,7 +33,7 @@
       <countdown #cd  style="font-size:30px; font-weight:bold" [config]="configWork" (event)="handleEvent($event)"></countdown>
     <div class="pie">
         <label class="med font" style=" font-size: 18px;"><span >Next</span><br>Break {{taskNumber/2+1}}</label>
-        
+
     </div>
     </div>
   </div>
@@ -44,7 +44,7 @@
       <ion-label style="font-size:30px;">Enjoy your Break</ion-label><br>
       <br>
       <br>
-      <div class="numb"> 
+      <div class="numb">
         <round-progress
         [current]="360"
         [max]="360"
@@ -54,19 +54,21 @@
         ></round-progress>
         <br>
         <countdown  #cd style="font-size:30px; font-weight:bold" [config]="configBreak" (event)="handleEvent($event)"></countdown>
-        
-      </div>    
+
+      </div>
       <label class="med fontb" style=" font-size: 18px;"><span>Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
-      
+
     </div>
   </div>
 
 
   <div class="containerc" *ngIf="taskNumber%8==7">
     <div class="count">
+      <br>
       <label style="font-size:30px;">Enjoy your Long Break</label><br>
-      
-      <div class="numc"> 
+      <br>
+      <br>
+      <div class="numc">
         <round-progress
         [current]="360"
         [max]="360"
@@ -74,11 +76,12 @@
         [animation]="'easeOutSine'"
         [color]="'#c0a403'"
     ></round-progress>
+    <br>
         <countdown #cd style="font-size:30px; font-weight:bold" [config]="configLongBreak" (event)="handleEvent($event)"></countdown>
-        
-      </div>      
+
+      </div>
       <label class="med fontb" style=" font-size: 18px;"><span>Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
-      
+
     </div>
   </div>
 
