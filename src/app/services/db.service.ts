@@ -11,7 +11,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 })
 
 export class DbService {
-  registroList = new BehaviorSubject([]);
+  registroList = new BehaviorSubject([]); // lista de la BD.
   private storage: SQLiteObject;
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -28,27 +28,27 @@ export class DbService {
       })
       .then((db: SQLiteObject) => {
           this.storage = db;
-          this.getData();
+          this.getData(); // te manda a obtener los datos.
       });
     });
   }
 
   dbState() {
-    return this.isDbReady.asObservable();
+    return this.isDbReady.asObservable(); // observable que indica si está disponible.
   }
 
   fecthRegistros(): Observable<Registro[]> {
-    return this.registroList.asObservable();
+    return this.registroList.asObservable(); // observable que emite registro list
   }
 
   getData() {
     this.httpClient.get(
-      'assets/dump.sql',
+      'assets/dump.sql', // obtiene los datos del dump.sql
       {responseType: 'text'}
     ).subscribe(data => {
-      this.sqlPorter.importSqlToDb(this.storage, data)
+      this.sqlPorter.importSqlToDb(this.storage, data) // ejecuta el dump y lo guarda en el DBO.
         .then(_ => {
-          this.getRegistros();
+          this.getRegistros(); // obtiene los registros.
           this.isDbReady.next(true);
         })
         .catch(error => console.error(error));
@@ -57,6 +57,7 @@ export class DbService {
 
   // Get list
   async getRegistros(){
+    // te trae los últimos 7 registros.
     const res = await this.storage.executeSql('SELECT * FROM registro ORDER BY id DESC LIMIT 7', []);
     const items: Registro[] = [];
     if (res.rows.length > 0) {
@@ -76,8 +77,9 @@ export class DbService {
   async addRegistro(numciclos: number, minsporciclo: number) {
     const data = [numciclos, minsporciclo];
     const query = 'INSERT INTO registro (fecha, numciclos, minsporciclo) VALUES (DATETIME(\'now\', \'localtime\'), ?, ?)';
-    const res = await this.storage.executeSql(query, data);
-    await this.getRegistros();
+    // inserta los ciclos y los minutos por ciclo en la fecha de hoy (local).
+    const res = await this.storage.executeSql(query, data); // lo ejecuta
+    await this.getRegistros(); // para que se actualicen las gráficas.
     return res;
   }
 }

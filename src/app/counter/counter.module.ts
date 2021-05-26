@@ -14,9 +14,9 @@ import { CountdownModule } from 'ngx-countdown';
     CommonModule,
     FormsModule,
     IonicModule,
-    CounterPageRoutingModule,
-    CountdownModule,
-    RoundProgressModule
+    CounterPageRoutingModule, // rutas del contador.
+    CountdownModule, // timer.
+    RoundProgressModule // animación del círculo.
   ],
   declarations: [CounterPage]
 })

@@ -1,7 +1,8 @@
+import { DataService } from './../services/data.service';
 import { DbService } from './../services/db.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { Router } from '@angular/router';
+import { CountdownEvent } from 'ngx-countdown';
 
 @Component({
   selector: 'app-counter',
@@ -9,6 +10,8 @@ import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdo
   styleUrls: ['./counter.page.scss'],
 })
 export class CounterPage implements OnInit {
+
+  // declaración de variables.
 
   data: any;
   taskNumber = 0;
@@ -36,19 +39,18 @@ export class CounterPage implements OnInit {
   };
 
 
-  constructor(private router: Router, private route: ActivatedRoute, private db: DbService) { }
+  constructor(private router: Router, private db: DbService,
+    private dataService: DataService) { }
 
   ngOnInit() {
-    if(this.route.snapshot.data.special){
-      this.data = this.route.snapshot.data.special;
-    }
-    console.log(this.data);
+    this.data = this.dataService.getData();
+    // console.log(this.data);
     this.workTime  = this.data[0].work;
     this.breakTime = this.data[0].break;
     this.cycles = this.data[0].cycles;
     this.longBreakTime=this.data[0].longBreakTime;
 
-
+    // le damos valores a los objetos que ocupa el html
     this.configWork = {
       leftTime: (this.workTime*60),
       format: 'mm:ss',
@@ -75,12 +77,12 @@ export class CounterPage implements OnInit {
 
   handleEvent(e: CountdownEvent){
     this.notify = `${e.status}`;
-    if (this.notify === '3'){
+    if (this.notify === '3'){ // si da status 3 es que ya va a cambiar de estado.
       this.playAudio();
-      this.taskNumber++;
+      this.taskNumber++; // taskNumber es la actividad en la que va el contador.
       if (this.taskNumber===(2*this.cycles)-1){   // si llega al ultimo
         this.taskNumber=0;
-        this.storeData();
+        this.storeData(); // se agrega a la BD.
       }
     }
   }

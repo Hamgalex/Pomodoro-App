@@ -9,22 +9,23 @@ import { Router } from '@angular/router';
 })
 export class TaskPage implements OnInit {
 
+  public workTime= 25;
+  public breakTime = 5;
+  public cycles = 4;
+  public longBreakTime = 15;
+
+  data: any[];
+
   constructor(private dataService: DataService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  public workTime:  number= 25;
-  public breakTime: number= 5;
-  public cycles:number=4;
-  public longBreakTime: number=15;
-
-  data: any[];
-
   sendData(){
+    // cuando se envían los datos
     this.data = [{work: this.workTime,break: this.breakTime,cycles:this.cycles,longBreakTime:this.longBreakTime}];
     this.dataService.setData(this.data);
-    this.router.navigateByUrl('/counter/1');
+    this.router.navigateByUrl('/counter'); // redirige al contador.
   }
 
 }

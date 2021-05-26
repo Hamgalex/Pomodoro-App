@@ -13,7 +13,7 @@ import { StatsPage } from './stats.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    StatsPageRoutingModule,ChartsModule
+    StatsPageRoutingModule,ChartsModule // para mostrar las gráficas.
   ],
   declarations: [StatsPage]
 })

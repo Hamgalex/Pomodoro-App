@@ -8,19 +8,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
+  <!-- en los ciclos en los cuales se trabaja (los pares, iniciando en 0) -->
   <div class="container" *ngIf="taskNumber%2 == 0">
     <div class="count">
 
 
       <ion-label>
         <br>
+        <!-- taskNumer/2 + 1 es la numeración de ciclos (1, 2, 3, ...) -->
         <ion-label  style="font-size:30px;" >Cycle {{taskNumber/2+1}} / {{cycles}}</ion-label><br>
         <ion-label style="font-size:22px;">Time to Work!</ion-label>
       </ion-label>
       <br>
       <br>
       <div class="num">
+        <!-- la duración es workTime (minutos) pasado a milisegundos -->
         <round-progress
         [current]="360"
         [max]="360"
@@ -30,6 +32,7 @@
         ></round-progress>
       </div>
       <br>
+      <!-- el ts maneja el evento de timer -->
       <countdown #cd  style="font-size:30px; font-weight:bold" [config]="configWork" (event)="handleEvent($event)"></countdown>
     <div class="pie">
         <label class="med font" style=" font-size: 18px;"><span >Next</span><br>Break {{taskNumber/2+1}}</label>
@@ -37,7 +40,7 @@
     </div>
     </div>
   </div>
-
+  <!-- solo en los taskNumers nones y que no descansos largos (el séptimo, es decir, el descanso de 4to ciclo) -->
   <div class="containerb" *ngIf="taskNumber%2 == 1 && taskNumber%8!=7">
     <div class="count">
       <br>
@@ -54,14 +57,13 @@
         ></round-progress>
         <br>
         <countdown  #cd style="font-size:30px; font-weight:bold" [config]="configBreak" (event)="handleEvent($event)"></countdown>
-
       </div>
       <label class="med fontb" style=" font-size: 18px;"><span>Next</span><br>Cycle {{taskNumber/2+1.5}}</label>
 
     </div>
   </div>
 
-
+  <!-- descanso largo es el séptimo taskNumber -->
   <div class="containerc" *ngIf="taskNumber%8==7">
     <div class="count">
       <br>
