@@ -10,7 +10,7 @@
   <div id="container">
     <br>
     <ion-list>
-
+      <!-- deslizadores de work time, break time y long break -->
       <ion-item>
         <ion-avatar>
           <img src="/assets/img/pomodoro.png"/>
@@ -18,7 +18,7 @@
             <div >
               <ion-label>Work Time: {{workTime}} min</ion-label>
             </div>
-          <ion-range min=".1" max="50" step="1"  color="danger" pin="true"value="25 " [(ngModel)]='workTime'></ion-range>
+          <ion-range min="1" max="50" step="1"  color="danger" pin="true" value="25 " [(ngModel)]='workTime'></ion-range>
       </ion-item>
 
       <ion-item>
@@ -28,7 +28,7 @@
         <div>
          <ion-label>Break Time: {{breakTime}} min</ion-label>
         </div>
-        <ion-range min=".1" max="20" step="1" color="secondary" pin="true" value="5"  [(ngModel)]='breakTime'></ion-range>
+        <ion-range min="1" max="20" step="1" color="secondary" pin="true" value="5"  [(ngModel)]='breakTime'></ion-range>
       </ion-item>
 
       <ion-item>
@@ -38,7 +38,7 @@
         <div >
           <ion-label>Long Break Time: {{longBreakTime}} min</ion-label>
         </div>
-        <ion-range min=".1" max="20" step="1" color="tertiary" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
+        <ion-range min="1" max="20" step="1" color="tertiary" pin="true" value="4" [(ngModel)]='longBreakTime' ></ion-range>
       </ion-item>
 
 

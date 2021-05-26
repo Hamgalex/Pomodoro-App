@@ -9,7 +9,7 @@ export class Usuario {
 
     get token() {
         if (!this.tokenExpiration || this.tokenExpiration <= new Date()) {
-            return null;
+            return null; // si no hay token, o ya expiró regresa un valor nulo.
         }
         return this.tokenUsuario;
     }

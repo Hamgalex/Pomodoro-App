@@ -21,24 +21,7 @@ export class LoginPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController
   ) { }
-  ngOnInit() {
-  }
-  // onLogin() {
-  //   this.isLoading = true;
-  //   this.loginService.login();
-  //   this.loadingCtrl.create({
-  //     keyboardClose: true,
-  //     message: 'Validando ...'
-  //   })
-  //     .then(loadingEl => {
-  //       loadingEl.present();
-  //       setTimeout(() => {
-  //         this.isLoading = false;
-  //         loadingEl.dismiss();
-  //         this.router.navigateByUrl('/task');
-  //       }, 2000);
-  //     })
-  // }
+  ngOnInit() { }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {
@@ -47,15 +30,10 @@ export class LoginPage implements OnInit {
     const email = form.value.email;
     const pass = form.value.password;
     this.authenticate(email, pass);
-    // if (this.isLoginMode) {
-    //   //CALL LOGIN WS
-    // }
-    // else {
-    //   //CALL SIGNUP WS
-    // }
   }
+
   onSwitchAuthMode() {
-    this.isLoginMode = !this.isLoginMode;
+    this.isLoginMode = !this.isLoginMode; // te cambia ya se a modo registro o log in.
   }
 
   showAlert(titulo: string, mensaje: string) {
@@ -68,48 +46,45 @@ export class LoginPage implements OnInit {
 
   authenticate(email: string, password: string) {
     this.isLoading = true;
-    // this.loginService.login();
     this.loadingCtrl.create({
       keyboardClose: true,
-      message: 'Validando ...'
+      message: 'Validating ...'
     })
       .then(loadingEl => {
         loadingEl.present();
 
         let authObs: Observable<LoginResponseData>;
-        if (this.isLoginMode) {
+        if (this.isLoginMode) { // si es verdadero, hace log in, si no, hace registro.
           authObs = this.loginService.login(email, password);
         }
         else {
           authObs = this.loginService.signup(email, password);
         }
-        authObs.subscribe(response => {
-          console.log(response);
-          // this.loginService.signup(email, password).subscribe(response => {
-          //   console.log(response);
+        authObs.subscribe(response => { // si todo está bien, quita el loading element y navega a task.
+          // console.log(response);
           this.isLoading = false;
           loadingEl.dismiss();
           this.router.navigateByUrl('/task');
         },
-          errorResponse => {
-            this.isLoading = false;
-            loadingEl.dismiss();
-            const error = errorResponse.error.error.message;
-            let mensaje = 'Acceso incorrecto !';
-            switch (error) {
-              case 'EMAIL_EXISTS':
-                mensaje = 'Usuario ya existe !';
-                break;
-              case 'EMAIL_NOT_FOUND':
-                mensaje = 'Usuario no existe !';
-                break;
-              case 'INVALID_PASSWORD':
-                mensaje = 'Contraseña incorrecta !';
-                break;
-            }
-            console.log(mensaje);
-            this.showAlert('Error', mensaje);
-          });
+        errorResponse => { // si no, muestra el mensaje de error
+          this.isLoading = false;
+          loadingEl.dismiss();
+          const error = errorResponse.error.error.message;
+          let mensaje = 'Acceso incorrecto !';
+          switch (error) {
+            case 'EMAIL_EXISTS':
+              mensaje = 'Usuario ya existe !';
+              break;
+            case 'EMAIL_NOT_FOUND':
+              mensaje = 'Usuario no existe !';
+              break;
+            case 'INVALID_PASSWORD':
+              mensaje = 'Contraseña incorrecta !';
+              break;
+          }
+          console.log(mensaje);
+          this.showAlert('Error', mensaje);
+        });
 
       });
   }

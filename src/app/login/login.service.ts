@@ -21,18 +21,15 @@ export interface LoginResponseData {
 })
 
 export class LoginService {
-
-  private _usuarioLoggeado = true;
   private usuario = new BehaviorSubject<Usuario>(null);
 
   get usuarioLoggeado() {
-    // return this._usuarioLoggeado;
     return this.usuario.asObservable().pipe(map(user => {
       if (user) {
-        return !!user.token;
+        return !!user.token; // si sí hay token, regresa true, sino, false.
       }
       else {
-        return false;
+        return false; // si no hay usuario, regresa falso
       }
     }));
 
@@ -41,13 +38,11 @@ export class LoginService {
     private http: HttpClient
   ) { }
 
-  // login() {
-  //   this._usuarioLoggeado = true;
-  // }
   logout() {
-    //this._usuarioLoggeado = false;
     this.usuario.next(null);
   }
+
+  // Para signup y login se hacen peticiones post a Firebase.
 
   signup(email: string, password: string) {
     return this.http.post<LoginResponseData>(
@@ -63,8 +58,9 @@ export class LoginService {
     ).pipe(tap(this.setUserDate.bind(this)));
   }
 
-  private setUserDate(userData: LoginResponseData) {//guardamos el usuario logeado
+  private setUserDate(userData: LoginResponseData) { //guardamos el usuario logeado
     const expTime = new Date(new Date().getTime() + (+userData.expiresIn * 1000));
     this.usuario.next(new Usuario(userData.localId, userData.email, userData.idToken, expTime));
+    // asigna al Subject usuario como valor siguiente el nuevo usuario.
   }
 }
