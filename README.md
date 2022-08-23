@@ -4,9 +4,6 @@ Esta aplicación es un timer pomodoro hecho en Ionic con Angular, el cual es un 
 
 - Leslie Elizabeth Saucedo Bahena 1930124
 - Cecilia Arlet Treviño Morin 1907173
-- Tomas Bernal Buchard 1749675
-- Daniela Rodriguez Nocedo 1985203
-- Gerardo Antonio Resendiz Rodríguez 1878246
 - Sergio Andrés Elizondo Rodríguez 1907852
 - Héctor Alejandro Márquez González 1989936
 
