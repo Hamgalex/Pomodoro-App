@@ -2,10 +2,10 @@
 
 Esta aplicación es un timer pomodoro hecho en Ionic con Angular, el cual es un método de estudio para poder eficientizar nuestras tareas. El método consiste en trabajar y descansar ciertos tiempos los cuales nosotros elegiremos. Esta aplicación fue creada por:
 
-- Leslie Elizabeth Saucedo Bahena 1930124
-- Cecilia Arlet Treviño Morin 1907173
-- Sergio Andrés Elizondo Rodríguez 1907852
-- Héctor Alejandro Márquez González 1989936
+- Leslie Elizabeth Saucedo Bahena
+- Cecilia Arlet Treviño Morin
+- Sergio Andrés Elizondo Rodríguez
+- Héctor Alejandro Márquez González
 
 ## Como correr el programa
 
